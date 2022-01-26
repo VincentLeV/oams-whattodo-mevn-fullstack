@@ -1,0 +1,19 @@
+@mixin responsive($screen)
+    @if $screen == md
+        @media screen and (min-width: 420px)
+            @content
+    @if $screen == lg
+        @media screen and (min-width: 1025px)
+            @content
+    @if $screen == xl
+        @media screen and (min-width: 1281px)
+            @content
+    @if $screen == xxl
+        @media screen and (min-width: 1920px)
+            @content
+
+@mixin flexBox($direction, $align, $justify)
+    display: flex
+    flex-direction: $direction
+    align-items: $align
+    justify-content: $justify 

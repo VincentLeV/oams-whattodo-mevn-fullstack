@@ -1,0 +1,39 @@
+@use "../abstracts" as *
+    
+.add-dial-container
+    position: absolute
+    bottom: 5vh
+    right: 6vw   
+
+.add-dial
+    width: 55px
+    height: 55px
+    border-radius: 50%
+    background: var(--va-primary)
+    border: 0
+
+.rotate
+    transition: 0.2s all ease
+    transform: rotateZ(45deg)
+
+.fa-plus
+    color: white
+    transition: 0.2s all ease
+    font-size: 1.2em
+
+.add-dial-content
+    margin: 0 0 10px 0
+    @include flexBox(column, center, space-between)
+
+.add-dial-item
+    width: 45px
+    height: 45px
+    border-radius: 50%
+    background: var(--va-primary)
+    margin: 5px 0
+    color: white
+    @include flexBox(row, center, center)
+
+.fa-clipboard-list,
+.fa-project-diagram
+    font-size: 1.2em
