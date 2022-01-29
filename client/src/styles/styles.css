@@ -1,10 +1,38 @@
 .container {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 100%;
   height: 85vh;
   margin: auto;
   padding: 10px 0;
+}
+
+@media screen and (min-width: 1025px) {
+  .container {
+    max-width: 700px;
+  }
+}
+.app-logo {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.tab-menu {
+  padding: 0 10px;
+}
+
+.icon,
+.tab-menu-text {
+  color: var(--va-primary);
+  font-size: 1.3rem;
+}
+
+.tab-menu-text {
+  margin: 0 0 10px 0;
+}
+
+.icon {
+  padding: 0 0 10px 0;
 }
 
 .modal-container {
@@ -28,12 +56,20 @@
   margin: 0 auto;
 }
 
+@media screen and (min-width: 1025px) {
+  .modal {
+    width: 40%;
+  }
+}
 .todo-container {
-  padding: 0 5vw;
+  padding: 0 2vw;
 }
 
 .todo {
   margin: 5px 0;
+}
+.todo.selected {
+  position: relative;
 }
 
 .todo-info {
@@ -45,6 +81,11 @@
 }
 
 .todo-description {
+  font-size: 1.1rem;
+}
+
+.todo-extra {
+  font-size: 0.85rem;
   color: orange;
 }
 
@@ -68,27 +109,62 @@
 .todo-more-icon {
   font-size: 1.4em;
   color: gray;
+  cursor: pointer;
 }
 
-.p-high {
+.p-high,
+.p-high-2 {
   color: red;
 }
 
-.p-low {
+.p-low,
+.p-low-2 {
   color: blue;
 }
 
-.p-med {
+.p-med,
+.p-med-2 {
   color: orange;
+}
+
+.p-high.p-high-2 {
+  color: red;
+}
+.p-high.p-med-2 {
+  color: red;
+}
+.p-high.p-low-2 {
+  color: red;
+}
+
+.p-med.p-high-2 {
+  color: orange;
+}
+.p-med.p-med-2 {
+  color: orange;
+}
+.p-med.p-low {
+  color: orange;
+}
+
+.p-low.p-high-2 {
+  color: blue;
+}
+.p-low.p-med-2 {
+  color: blue;
+}
+.p-low.p-low-2 {
+  color: blue;
 }
 
 .add-dial-container {
   position: absolute;
   bottom: 5vh;
-  right: 6vw;
+  right: 8vw;
 }
 
 .add-dial {
+  cursor: pointer;
   width: 55px;
   height: 55px;
   border-radius: 50%;
@@ -117,6 +193,7 @@
 }
 
 .add-dial-item {
+  cursor: pointer;
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -134,6 +211,12 @@
   font-size: 1.2em;
 }
 
+@media screen and (min-width: 1025px) {
+  .add-dial-container {
+    bottom: 5vh;
+    right: -4vw;
+  }
+}
 .button {
   background: var(--va-primary);
   color: white;
@@ -181,4 +264,31 @@ input {
 }
 .priority-item span {
   margin: 0 0 0 10px;
+}
+
+.edit-todo-menu {
+  position: absolute;
+  right: 5vw;
+  margin: -2vh 0;
+}
+.edit-todo-menu i {
+  font-size: 1.2rem;
+  margin: 0 10px 0 0;
+}
+.edit-todo-menu span {
+  font-size: 1.05rem;
+}
+
+.edit-todo-item {
+  margin: 14px 0;
+  cursor: pointer;
+}
+.edit-todo-item:hover {
+  color: blue;
+}
+
+@media screen and (min-width: 1025px) {
+  .edit-todo-menu {
+    right: 2vw;
+  }
 }/*# sourceMappingURL=styles.css.map */

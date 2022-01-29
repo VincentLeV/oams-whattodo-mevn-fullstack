@@ -41,6 +41,7 @@ todoRouter.delete( "/api/todos/:id", async (req, res, next) => {
 todoRouter.put( "/api/todos/:id", async (req, res, next) => {
     try {
         const body = req.body
+        if (req.body.description === "") throw {name : "NoLengthError"}
         const savedTodo = await Todo.findByIdAndUpdate( req.params.id, body, { new: true } )
         savedTodo ? res.status(201).json(savedTodo) : res.status(404).end()
     } catch (err) {

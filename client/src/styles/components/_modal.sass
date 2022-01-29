@@ -1,3 +1,5 @@
+@use "../abstracts" as *
+    
 .modal-container
     position: fixed
     inset: 0
@@ -16,3 +18,7 @@
     transform: translate(-50%, -50%)
     width: 90vw
     margin: 0 auto
+
+@include responsive(lg)
+    .modal
+        width: 40%

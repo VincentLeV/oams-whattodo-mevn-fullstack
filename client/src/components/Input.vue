@@ -5,12 +5,13 @@
             v-model="inputValue"
             :name="name"
             :type="type"
+            :pPriority="pPriority"
             :aria-label="type"
         >
 
         <div class="endornment-container" v-show="endornment">
             <div 
-                :class="[priorityColor, 'endornment']" 
+                :class="[priorityColor, priorityColor2, 'endornment']" 
                 @click="showMenu"
             >
                 <i class="fas fa-flag"></i>
@@ -52,6 +53,10 @@ export default {
         endornment: {
             type: Boolean,
             default: false
+        },
+        pPriority: {
+            type: Number,
+            default: 0
         }
     },
     data() {
@@ -60,7 +65,8 @@ export default {
             priorityColor: {
                 type: String,
                 default: ""
-            }
+            },
+            priorityColor2: String
         }
     },
     computed: {
@@ -71,6 +77,22 @@ export default {
             set(value) {
                 this.$emit("update:modelValue", value)
             }
+        }
+    },
+    updated() {
+        switch (this.pPriority) {
+        case 3: 
+            this.priorityColor2 = "p-high-2"
+            break
+        case 2: 
+            this.priorityColor2 = "p-med-2"
+            break
+        case 1:
+            this.priorityColor2 = "p-low-2"
+            break
+        default:
+            this.priorityColor2 = ""
+            break
         }
     },
     methods: {

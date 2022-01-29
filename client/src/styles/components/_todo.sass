@@ -1,10 +1,12 @@
 @use "../abstracts" as *
 
 .todo-container
-    padding: 0 5vw
+    padding: 0 2vw
     
 .todo
     margin: 5px 0
+    &.selected
+        position: relative
 
 .todo-info
     display: flex
@@ -14,6 +16,10 @@
     font-size: 0.8em
 
 .todo-description
+    font-size: 1.1rem
+
+.todo-extra
+    font-size: 0.85rem
     color: $priority-med
 
 .form-control
@@ -33,12 +39,40 @@
 .todo-more-icon
     font-size: 1.4em
     color: gray
+    cursor: pointer
 
-.p-high
+.p-high,
+.p-high-2
     color: $priority-high
 
-.p-low
+.p-low,
+.p-low-2
     color: $priority-low
 
-.p-med
+.p-med,
+.p-med-2
     color: $priority-med
+
+.p-high
+    &.p-high-2
+        color: $priority-high
+    &.p-med-2
+        color: $priority-high
+    &.p-low-2
+        color: $priority-high
+
+.p-med
+    &.p-high-2
+        color: $priority-med
+    &.p-med-2
+        color: $priority-med
+    &.p-low
+        color: $priority-med
+
+.p-low
+    &.p-high-2
+        color: $priority-low
+    &.p-med-2
+        color: $priority-low
+    &.p-low-2
+        color: $priority-low

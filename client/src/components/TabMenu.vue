@@ -1,5 +1,5 @@
 <template>
-    <VaTabs stateful grow>
+    <VaTabs stateful grow class="tab-menu" v-model="defaultTab">
         <template #tabs>
             <VaTab
                 v-for="title in titles"
@@ -8,7 +8,7 @@
                 @click="onClick(title)"
             >
                 <i :class="[title.icon, 'fas icon']"></i>
-                {{ title.name }}
+                <span class="tab-menu-text">{{ title.name }}</span>
             </VaTab>
         </template>
     </VaTabs>
@@ -25,6 +25,7 @@ export default {
     },
     data() {
         return {
+            defaultTab: "Todos",
             titles: [
                 {
                     name: "Todos",

@@ -28,22 +28,9 @@ export default {
             default: false
         }
     },
-    data() {
-        return {
-            priorities: [
-                {
-                    name: "High",
-                    color: "p-high"
-                },
-                {
-                    name: "Medium",
-                    color: "p-med"
-                },
-                {
-                    name: "Low",
-                    color: "p-low"
-                }
-            ]
+    computed: {
+        priorities() {
+            return this.$store.getters.allPriorities
         }
     },
     methods: {

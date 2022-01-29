@@ -1,0 +1,23 @@
+@use "../abstracts" as *
+    
+.edit-todo-menu 
+    position: absolute
+    right: 5vw
+    margin: -2vh 0
+    
+    i
+        font-size: 1.2rem
+        margin: 0 10px 0 0
+    
+    span
+        font-size: 1.05rem
+
+.edit-todo-item
+    margin: 14px 0
+    cursor: pointer
+    &:hover
+        color: blue
+
+@include responsive(lg)
+    .edit-todo-menu 
+        right: 2vw

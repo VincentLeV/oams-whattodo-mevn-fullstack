@@ -1,7 +1,7 @@
 import axios from "axios"
 
-// const baseUrl = "https://oams-whattodo-rexpmongo-api.herokuapp.com"
-const baseUrl = "http://localhost:5000"
+const baseUrl = "https://oams-whattodo-mevn-api.herokuapp.com"
+// const baseUrl = "http://localhost:5000"
 
 const getTodos = async () => {
     const req = await axios.get(`${baseUrl}/api/todos`)
@@ -33,8 +33,8 @@ const createProject = async (newProj) => {
     return res.data
 }
 
-const updateTodo = async (id, edu) => {
-    const res = await axios.put(`${baseUrl}/api/todos/${id}`, edu)
+const updateTodo = async (id, todo) => {
+    const res = await axios.put(`${baseUrl}/api/todos/${id}`, todo)
     return res.data
 }
 

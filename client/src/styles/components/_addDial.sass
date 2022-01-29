@@ -3,9 +3,10 @@
 .add-dial-container
     position: absolute
     bottom: 5vh
-    right: 6vw   
+    right: 8vw   
 
 .add-dial
+    cursor: pointer
     width: 55px
     height: 55px
     border-radius: 50%
@@ -26,6 +27,7 @@
     @include flexBox(column, center, space-between)
 
 .add-dial-item
+    cursor: pointer
     width: 45px
     height: 45px
     border-radius: 50%
@@ -37,3 +39,8 @@
 .fa-clipboard-list,
 .fa-project-diagram
     font-size: 1.2em
+
+@include responsive(lg)
+    .add-dial-container
+        bottom: 5vh
+        right: -4vw   

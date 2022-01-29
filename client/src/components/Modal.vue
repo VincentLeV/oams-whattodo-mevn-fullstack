@@ -12,8 +12,8 @@ export default {
     name: "Modal",
     methods: {
         close() {
-            this.$emit("close")
-        },
-    },
+            this.$emit("close-modal")
+        }
+    }
 }
 </script>

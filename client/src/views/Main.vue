@@ -3,12 +3,13 @@
         <AppBar />
         <div class="container">
             <TabMenu @tab-click="tabClick" />
+
             <QuickTodos 
                 v-show="showQuickTodos" 
-                :showTodoForm="showTodoForm" 
-                @close="close"
+                @show-edit-todo-modal="openEditTodoModal"
             />
             <Projects v-show="showProjects" />
+
             <AddDial
                 :rotateDial="rotateDial"
                 :showContent="showContent"
@@ -16,10 +17,18 @@
                 @toggle-dial="toggleDial"
                 v-click-outside="onClickOutside"
             />
-            <!-- <AddTodoModal 
-                :showTodoForm="showTodoForm"
-                @close="close"
-            /> -->
+
+            <AddTodoModal 
+                :showAddTodoModal="showAddTodoModal" 
+                @close-add-todo-modal="closeAddTodoModal" 
+                @close-modal="closeModal"
+            />
+
+            <EditTodoModal 
+                :showEditTodoModal="showEditTodoModal"
+                @close-edit-todo-modal="closeEditTodoModal" 
+                @close-modal="closeModal"
+            />
         </div>
     </main>
 </template>
@@ -31,7 +40,8 @@ import TabMenu from "../components/TabMenu.vue"
 import QuickTodos from "./QuickTodos.vue"
 import Projects from "./Projects.vue"
 import AddDial from "../components/AddDial/AddDial.vue"
-// import AddTodoModal from "../components/AddTodo/AddTodoModal.vue"
+import AddTodoModal from "../components/AddTodo/AddTodoModal.vue"
+import EditTodoModal from "../components/EditTodo/EditTodoModal.vue"
 
 export default {
     name: "Main",
@@ -41,16 +51,18 @@ export default {
         QuickTodos,
         Projects,
         AddDial,
-        // AddTodoModal
+        AddTodoModal,
+        EditTodoModal
     },
     data() {
         return {
             showQuickTodos: true,
             showProjects: false,
-            showTodoForm: false,
+            showAddTodoModal: false,
             showProjectForm: false,
+            showEditTodoModal: false, 
             rotateDial: false,
-            showContent: false
+            showContent: false,
         }
     },
     methods: {
@@ -65,20 +77,31 @@ export default {
         },
         showForm(name) {
             if (name === "todos") {
-                this.showTodoForm = true
+                this.showAddTodoModal = true
             } else if (name === "projects") {
                 this.showProjectForm = true
             }
         },
-        close() {
-            this.showTodoForm = false
-            this.rotateDial = false
+        openEditTodoModal() {
+            this.isEditMenuOpen = false
+            this.showEditTodoModal = true
+        },
+        closeAddTodoModal() {
+            this.showAddTodoModal = false
+        },
+        closeEditTodoModal() {
+            this.showEditTodoModal = false
+        },
+        closeModal() {
+            this.showAddTodoModal = false
+            this.showEditTodoModal = false
         },
         toggleDial() {
             this.rotateDial = !this.rotateDial
             this.showContent = !this.showContent
         },
         onClickOutside(e) {
+            // console.log(e.target.className)
             if (this.rotateDial === false) {
                 this.rotateDial = false
             } else {
@@ -91,15 +114,10 @@ export default {
                 this.showContent = !this.showContent
             } 
 
-            // if (e.target.className.includes("fas fa-flag")) {
-            //     this.rotateDial = true
-            //     this.showContent = true
-            // } 
-            if (e.target.className.includes("modal-backdrop")) {
-                this.showTodoForm = false
-            } else {
+            if (e.target.className.includes("fas fa-flag") || e.target.className.includes("priority-text")) {
                 this.rotateDial = true
-            }
+                this.showContent = false
+            } 
         }
     },
     directives: {

@@ -15,17 +15,21 @@
             <VaTimeInput v-model="deadlineTime" ampm />
         </div>
 
-        <Button name="Add Todo" />
+        <Button
+            name="Add Todo" 
+        />
     </form>
 </template>
 
 <script>
-import { VaTimeInput, VaDivider, VaDateInput } from "vuestic-ui"
+import { 
+    VaTimeInput, 
+    VaDivider, 
+    VaDateInput
+} from "vuestic-ui"
 import moment from "moment"  
 import Input from "../Input.vue"
 import Button from "../Button.vue"
-import useTodos from "../../store/todos"
-import Axios from "../../services/axios"
 
 export default {
     name: "AddTodoForm",
@@ -34,19 +38,7 @@ export default {
         Button,
         VaTimeInput,
         VaDivider,
-        VaDateInput,
-    },
-    props: {
-        showTodoForm: {
-            type: Boolean,
-            default: false
-        }
-    },
-    setup() {
-        const { setTodos } = useTodos()
-        return {
-            setTodos
-        }
+        VaDateInput
     },
     data() {
         return {
@@ -71,12 +63,13 @@ export default {
                     priority: this.priority,
                     isCompleted: false
                 }
-                await Axios.createTodo(newTodo)
-                this.setTodos(newTodo)
+
+                await this.$store.dispatch("createTodo", newTodo)
                 this.input.value = ""
-                this.$emit("close")
+                this.$emit("close-add-todo-modal")
+                this.$vaToast.init({ message: "Successfully added new todo", position: "bottom-left" })
             } catch (err) {
-                console.log(err)
+                this.$vaToast.init({ message: err.message, position: "bottom-left" })
             }
         },
         getPriority(color) {

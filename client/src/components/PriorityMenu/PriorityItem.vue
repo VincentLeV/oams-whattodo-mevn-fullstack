@@ -1,7 +1,7 @@
 <template>
     <div class="priority-item" @click="onClick(priority.color)">
         <i :class="[priority.color, 'fas fa-flag']"></i>
-        <span>{{ priority.name }}</span>
+        <span class="priority-text">{{ priority.name }}</span>
     </div>
 </template>
 

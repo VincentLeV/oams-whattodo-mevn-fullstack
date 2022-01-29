@@ -1,64 +1,49 @@
 <template>
     <section>
         <VaList>
-            <TodoContainer :todos="todos" />
+            <TodoContainer 
+                v-if="todos.length > 0"
+                :todos="todos" 
+                @show-edit-todo-modal="this.$emit('show-edit-todo-modal')"
+            />
+            <h2 v-else>No Todo</h2>
         </VaList>
-
-        <AddTodoModal 
-            :showTodoForm="showTodoForm"
-            :todos="todos"
-            @close="close"
-        />
     </section>
 </template>
 
 <script>
-import { onMounted } from "vue"
+import { mapState } from "vuex"
 import { VaList } from "vuestic-ui"
-// import Axios from "../services/axios"
-import TodoContainer from "../components/TodoContainer.vue"
-import AddTodoModal from "../components/AddTodo/AddTodoModal.vue"
-import useTodos from "../store/todos"
+import TodoContainer from "../components/Todo/TodoContainer.vue"
 
 export default {
     name: "QuickTodos",
     components: {
         VaList,
         TodoContainer,
-        AddTodoModal
     },
-    props: {
-        showTodoForm: {
-            type: Boolean
-        }
-    },
-    setup() {
-        const { todos, fetchTodos } = useTodos()
-
-        onMounted(() => {
-            fetchTodos()
+    created() {
+        this.$store.dispatch("getTodos")
+    }, 
+    computed: mapState(["todos"]),
+    updated() {
+        this.unsubscribe = this.$store.subscribe((mutation) => {
+            if (mutation.type === "EDIT_TODO" || mutation.type === "MARK_AS_COMPLETE") {
+                this.$store.dispatch("getTodos")
+            }
         })
-
-        return {
-            todos
-        }
     },
     methods: {
-        // async getAllTodos() {
-        //     const res = await Axios.getTodos()
-        //     return res
-        // },
         close() {
             this.$emit("close")
-        }
+        },
     },
-    // data() {
-    //     return {
-    //         todos: [],
-    //     }
-    // },
-    // async created() {
-    //     this.todos = await this.getAllTodos()
-    // },
 }
 </script>
+
+<style scoped>
+h2 {
+    text-align: center;
+    font-size: 1.5rem
+}
+</style>

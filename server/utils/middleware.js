@@ -16,9 +16,11 @@ const errorHandler = (err, req, res, next) => {
     logger.error( err.message )
 
     if ( err.name === "CastError" ) {
-        return res.status(400).send({ err: "malformatted id" })
+        return res.status(400).send({ message: "malformatted id" })
     } else if ( err.name === "ValidationError" ) {
         return res.status(400).json({ message: err.message })
+    } else if ( err.name === "NoLengthError" ) {
+        return res.status(400).send({ message: "Description can't be empty" })
     }
 
     next( err )
