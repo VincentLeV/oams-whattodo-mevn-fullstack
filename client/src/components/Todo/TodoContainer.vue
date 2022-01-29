@@ -1,9 +1,9 @@
 <template>
     <article 
-        v-for="todo in todos" :key="todo.id" 
         class="todo-container"
     >
         <Todo 
+            v-for="todo in todos" :key="todo.id" 
             :todo="todo" 
             @show-edit-todo-modal="this.$emit('show-edit-todo-modal')" 
         />

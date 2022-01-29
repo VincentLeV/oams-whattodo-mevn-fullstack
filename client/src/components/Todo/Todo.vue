@@ -1,49 +1,51 @@
 <template>
-    <VaListItem class="todo">
-        <VaListItemSection @click="completeTodo">
-            <form>
-                <div class="form-control">
-                    <input 
-                        type="checkbox"
-                        name="description" 
-                        v-model="checkboxValue" 
-                        aria-label="todo-description"
-                        class="checkbox"
-                    >
-                    <label 
-                        for="description" 
-                        :class="[checkboxValue ? 'isCompleted' : '', 'ml-5']"
-                    >
-                        <p class="todo-description">{{ todo.description }}</p>
-                    </label>
-                </div>
-            </form>
+    <section>
+        <VaListItem class="todo">
+            <VaListItemSection @click="completeTodo">
+                <form>
+                    <div class="form-control">
+                        <input 
+                            type="checkbox"
+                            name="description" 
+                            v-model="checkboxValue" 
+                            aria-label="todo-description"
+                            class="checkbox"
+                        >
+                        <label 
+                            for="description" 
+                            :class="[checkboxValue ? 'isCompleted' : '', 'ml-5']"
+                        >
+                            <p class="todo-description">{{ todo.description }}</p>
+                        </label>
+                    </div>
+                </form>
 
-            <VaListItemSection class="todo-info ml-5 mt-1">
-                <VaListItemLabel :class="[color, 'mr-2']">
-                    <i class="fas fa-flag"></i>
-                </VaListItemLabel>
-                <VaListItemLabel class="todo-extra">
-                    {{ formattedDeadline }}
-                </VaListItemLabel>
+                <VaListItemSection class="todo-info ml-5 mt-1">
+                    <VaListItemLabel :class="[color, 'mr-2']">
+                        <i class="fas fa-flag"></i>
+                    </VaListItemLabel>
+                    <VaListItemLabel class="todo-extra">
+                        {{ formattedDeadline }}
+                    </VaListItemLabel>
+                </VaListItemSection>
             </VaListItemSection>
-        </VaListItemSection>
-        
-        <VaListItemSection 
-            icon 
-            class="todo-more-icon" 
-            @click="showEditMenu"
-        >
-            <i class="fas fa-ellipsis-h"></i>
-        </VaListItemSection>
-    </VaListItem>
+            
+            <VaListItemSection 
+                icon 
+                class="todo-more-icon" 
+                @click="showEditMenu"
+            >
+                <i class="fas fa-ellipsis-h"></i>
+            </VaListItemSection>
+        </VaListItem>
 
-    <EditTodoMenu
-        :todo="todo" 
-        :isEditMenuOpen="isEditMenuOpen"
-        @click-outside-menu="clickOutsideMenu"
-        @show-edit-todo-modal="this.$emit('show-edit-todo-modal')"
-    />
+        <EditTodoMenu
+            :todo="todo" 
+            :isEditMenuOpen="isEditMenuOpen"
+            @click-outside-menu="clickOutsideMenu"
+            @show-edit-todo-modal="this.$emit('show-edit-todo-modal')"
+        />
+    </section>
 </template>
 
 <script>
