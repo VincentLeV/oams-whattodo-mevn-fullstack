@@ -4,7 +4,7 @@ import vClickOutside from "click-outside-vue3"
 import store from "./store"
 import App from "./App.vue"
 import "vuestic-ui/dist/vuestic-ui.css"
-import "./styles/styles.sass"
+import "./styles/styles.css"
 
 createApp(App)
     .use(store)
