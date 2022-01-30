@@ -1,7 +1,8 @@
 <template>
     <div class="form-control">
-        <label :for="name">{{ label }}</label>
+        <label :for="name" class="label">{{ label }}</label>
         <input
+            class="input"
             v-model="inputValue"
             :name="name"
             :type="type"

@@ -6,27 +6,27 @@
                     <div class="form-control">
                         <input 
                             type="checkbox"
-                            name="description" 
+                            name="isCompleted" 
                             v-model="checkboxValue" 
-                            aria-label="todo-description"
+                            aria-label="checkbox"
                             class="checkbox"
                         >
                         <label 
-                            for="description" 
+                            for="isCompleted" 
                             :class="[checkboxValue ? 'isCompleted' : '', 'ml-5']"
                         >
-                            <p class="todo-description">{{ todo.description }}</p>
+                            <span class="todo-description">{{ todo.description }}</span>
                         </label>
                     </div>
                 </form>
 
                 <VaListItemSection class="todo-info ml-5 mt-1">
-                    <VaListItemLabel :class="[color, 'mr-2']">
+                    <div :class="[color, 'mr-2 endornment-flag']">
                         <i class="fas fa-flag"></i>
-                    </VaListItemLabel>
-                    <VaListItemLabel class="todo-extra">
+                    </div>
+                    <p class="todo-extra">
                         {{ formattedDeadline }}
-                    </VaListItemLabel>
+                    </p>
                 </VaListItemSection>
             </VaListItemSection>
             
@@ -53,7 +53,6 @@ import moment from "moment"
 import { 
     VaListItem, 
     VaListItemSection, 
-    VaListItemLabel,
 } from "vuestic-ui"
 import EditTodoMenu from "../EditTodo/EditTodoMenu.vue"
 
@@ -65,7 +64,6 @@ export default {
     components: {
         VaListItem,
         VaListItemSection,
-        VaListItemLabel,
         EditTodoMenu
     },
     data() {

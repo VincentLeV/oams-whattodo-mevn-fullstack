@@ -1,8 +1,8 @@
-@use "../abstracts" as *
+@import "../abstracts"
     
 .edit-todo-menu 
-    position: absolute
-    right: 5vw
+    position: absolute !important
+    right: 5vw !important
     margin: -2vh 0
     
     i
@@ -20,4 +20,4 @@
 
 @include responsive(lg)
     .edit-todo-menu 
-        right: 2vw
+        right: 0
