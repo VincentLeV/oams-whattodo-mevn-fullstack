@@ -23,6 +23,7 @@ module.exports = {
         "no-trailing-spaces": 0,
         "linebreak-style": "off",
         "no-underscore-dangle": 0,
-        "no-param-reassign": 0
+        "no-param-reassign": 0,
+        "no-alert": 0
     },
 }

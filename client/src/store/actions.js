@@ -10,7 +10,6 @@ const actions = {
         commit("CREATE_NEW_TODO", todo)
     },
     async editTodo({ commit }, payload) {
-        console.log(payload)
         await Axios.updateTodo(payload.id, payload)
         commit("EDIT_TODO", payload)
     },

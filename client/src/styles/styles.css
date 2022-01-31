@@ -187,7 +187,7 @@
 
 .project-accordion {
   width: 100%;
-  padding: 1rem 0 5rem 0;
+  padding: 1.2rem 0 5rem 0;
 }
 
 .project-container {
@@ -409,7 +409,7 @@
   position: relative;
   width: 100%;
   max-width: 100%;
-  min-height: 80vh;
+  height: 100%;
   margin: auto;
   padding: 10px 0;
 }
@@ -420,6 +420,7 @@
 
 @media screen and (min-width: 768px) {
   .container {
+    min-height: 80vh;
     max-width: 600px;
   }
 }

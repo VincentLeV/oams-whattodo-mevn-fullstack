@@ -1,7 +1,7 @@
 import axios from "axios"
 
-// const baseUrl = "https://oams-whattodo-mevn-api.herokuapp.com"
-const baseUrl = "http://localhost:5000"
+const baseUrl = "https://oams-whattodo-mevn-api.herokuapp.com"
+// const baseUrl = "http://localhost:5000"
 
 const getTodos = async () => {
     const req = await axios.get(`${baseUrl}/api/todos`)
