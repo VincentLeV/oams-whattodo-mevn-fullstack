@@ -34,6 +34,7 @@ export default {
         async handleAddProject() {
             try {
                 await this.$store.dispatch("createProject", { name: this.value })
+                this.value = ""
                 this.$emit("close-add-project-modal")
                 this.$vaToast.init({ message: "Successfully added new project", position: "bottom-left" })
             } catch (err) {

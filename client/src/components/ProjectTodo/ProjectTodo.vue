@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import moment from "moment"
+import moment from "moment-mini"
 import { 
     VaListItem, 
     VaListItemSection, 

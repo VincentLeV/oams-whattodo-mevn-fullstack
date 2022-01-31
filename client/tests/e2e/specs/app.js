@@ -1,5 +1,5 @@
 // https://docs.cypress.io/api/introduction/api.html
-import moment from "moment"
+import moment from "moment-mini"
 
 describe("WhatToDo App", function() {
     beforeEach(function() {

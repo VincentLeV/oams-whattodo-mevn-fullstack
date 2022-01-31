@@ -15,10 +15,6 @@
             <VaDivider vertical />
             <VaInput 
                 v-model="todo.deadlineTime"
-                :rules="[
-                    (v) => v.match(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/g) 
-                    || `Time format is wrong`
-                ]"
             >
                 <template #appendInner>
                     <VaIcon
@@ -40,7 +36,7 @@ import {
     VaIcon
 } from "vuestic-ui"
 import { mapGetters } from "vuex"
-import moment from "moment"
+import moment from "moment-mini"
 import Input from "../Input.vue"
 import Button from "../Button.vue"
 
@@ -86,7 +82,7 @@ export default {
         async handleEditTodo() {
             try {
                 const date = `${moment(this.todo.deadlineDate).format("MM-DD-YYYY")} ${this.todo.deadlineTime}`
-                if (!this.todo.deadlineTime.match(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/g)) {
+                if (!this.todo.deadlineTime.match(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/g) && this.deadlineTime !== "") {
                     this.$vaToast.init({ 
                         message: "Can't create new todo: wrong time format", 
                         position: "bottom-left" 
