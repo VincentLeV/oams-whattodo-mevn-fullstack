@@ -48,6 +48,7 @@
             @click-outside-menu="clickOutsideMenu"
             @show-edit-todo-modal="this.$emit('show-edit-todo-modal')"
         />
+        <VaDivider />
     </section>
 </template>
 
@@ -56,6 +57,7 @@ import moment from "moment-mini"
 import { 
     VaListItem, 
     VaListItemSection, 
+    VaDivider
 } from "vuestic-ui"
 import { mapGetters } from "vuex"
 import EditTodoMenu from "../EditTodo/EditTodoMenu.vue"
@@ -68,7 +70,8 @@ export default {
     components: {
         VaListItem,
         VaListItemSection,
-        EditTodoMenu
+        EditTodoMenu,
+        VaDivider
     },
     computed: {
         ...mapGetters(["selectedTodo"])

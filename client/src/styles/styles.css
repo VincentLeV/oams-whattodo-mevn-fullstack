@@ -196,11 +196,11 @@
 }
 
 .project {
-  padding: 1.8rem 0;
+  padding: 1.8rem 0 1.5rem 0;
 }
 
 .project-toolbar {
-  padding: 0 1rem 1rem 1rem;
+  padding: 0 1rem 1.2rem 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -255,7 +255,7 @@
 
 .add-dial-container {
   position: fixed;
-  bottom: 8vh;
+  bottom: 3vh;
   right: 8vw;
 }
 
@@ -339,6 +339,7 @@
   position: absolute !important;
   right: 5vw !important;
   margin: -1vh -2vw;
+  z-index: 101;
 }
 .edit-todo-menu i {
   font-size: 1.05rem;
@@ -426,11 +427,11 @@
 }
 @media screen and (min-width: 1025px) {
   .container {
-    max-width: 700px;
+    max-width: 650px;
   }
 }
 @media screen and (min-width: 1281px) {
   .container {
-    max-width: 900px;
+    max-width: 750px;
   }
 }/*# sourceMappingURL=styles.css.map */

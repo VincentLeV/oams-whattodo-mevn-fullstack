@@ -5,19 +5,16 @@
             :todo="todo" 
             @show-edit-todo-modal="this.$emit('show-edit-todo-modal')" 
         />
-        <VaDivider></VaDivider>
     </article>
 </template>
 
 <script>
-import { VaDivider } from "vuestic-ui"
 import Todo from "./Todo.vue"
 
 export default {
     name: "TodoContainer",
     components: {
-        Todo,
-        VaDivider
+        Todo
     },
     props: {
         todos: {
