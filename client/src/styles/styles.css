@@ -1,10 +1,28 @@
 .app-logo {
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
 }
 
+.my-logo {
+  width: 2.2rem;
+  height: 2.2rem;
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .appbar {
+    padding: 0 4rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .my-logo {
+    display: block;
+  }
+}
 .tab-menu {
   padding: 0 10px;
+  max-width: 500px;
+  margin: auto;
 }
 
 .icon,
@@ -14,16 +32,19 @@
 }
 
 .tab-menu-text {
-  margin: 0 0 10px 0;
+  margin: 0 0 12px 0;
 }
 
 .icon {
-  padding: 0 0 10px 0;
+  padding: 0 0 12px 0;
 }
 
 .modal-container {
-  position: fixed;
-  inset: 0;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .modal-backdrop {
@@ -33,15 +54,21 @@
 }
 
 .modal {
-  position: absolute;
+  position: absolute !important;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   width: 90vw;
   margin: 0 auto;
+  z-index: 5000;
 }
 
+@media screen and (min-width: 768px) {
+  .modal {
+    width: 60%;
+  }
+}
 @media screen and (min-width: 1025px) {
   .modal {
     width: 40%;
@@ -51,6 +78,13 @@
   padding: 0 2vw;
 }
 
+.form-control,
+.todo-description,
+.todo-info,
+.todo-extra {
+  cursor: pointer;
+}
+
 .todo {
   margin: 5px 0;
 }
@@ -58,17 +92,18 @@
   position: relative;
 }
 
-.todo-info {
+.todo-details {
   display: flex !important;
   flex-direction: row !important;
+  font-size: 0.8rem;
 }
 
 .todo-description {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .todo-extra {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: orange !important;
 }
 
@@ -94,6 +129,10 @@
   font-size: 1.4em;
   color: gray;
   cursor: pointer;
+}
+
+.p-normal {
+  color: #464a68;
 }
 
 .p-high,
@@ -141,9 +180,82 @@
   color: blue;
 }
 
+.va-collapse__header__text {
+  font-size: 1.05rem;
+  font-weight: bold;
+}
+
+.project-accordion {
+  width: 100%;
+  padding: 1rem 0 5rem 0;
+}
+
+.project-container {
+  width: 90%;
+  margin: auto;
+}
+
+.project {
+  padding: 1rem 0;
+}
+
+.project-toolbar {
+  padding: 0 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.project-toolbar div {
+  cursor: pointer;
+}
+.project-toolbar i {
+  font-size: 1.1rem;
+  margin: 0 5px 0 0;
+}
+.project-toolbar span {
+  font-size: 0.9rem;
+}
+.project-toolbar i, .project-toolbar span {
+  color: #464a68;
+}
+.project-toolbar .toolbar-delete > * {
+  color: #b31b1b;
+}
+.project-toolbar .toolbar-delete i {
+  font-size: 1rem;
+}
+.project-toolbar div:nth-of-type(2) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.project-toolbar div:nth-of-type(2) div:nth-of-type(1) {
+  margin: 0 20px 0 0;
+}
+
+@media screen and (min-width: 1025px) {
+  .project-container {
+    width: 80%;
+  }
+
+  .project-accordion {
+    margin: 2rem 1rem;
+  }
+}
+.va-popover__content-wrapper {
+  margin: 0 0 0 10px;
+}
+
+.va-popover__content {
+  background: rgba(44, 130, 224, 0.3) !important;
+  box-shadow: none !important;
+}
+
 .add-dial-container {
-  position: absolute;
-  bottom: 5vh;
+  position: fixed;
+  bottom: 8vh;
   right: 8vw;
 }
 
@@ -197,8 +309,8 @@
 
 @media screen and (min-width: 1025px) {
   .add-dial-container {
-    bottom: 5vh;
-    right: -4vw;
+    bottom: 10vh;
+    right: 25vw;
   }
 }
 .button {
@@ -208,37 +320,7 @@
   padding: 10px 14px;
   border-radius: 5px;
   margin: 20px 0 5px 0;
-}
-
-.form-control {
-  margin: 8px 0;
-}
-
-.label {
-  display: block;
-  margin: 8px 0;
-  position: relative;
-}
-
-.input {
-  padding: 10px;
-  width: 100%;
-  border: 1px solid gray;
-  border-radius: 2px;
-}
-
-.endornment-container {
-  position: absolute;
-  top: 50%;
-  right: 2%;
-  -webkit-transform: translate(-50%, 25%);
-          transform: translate(-50%, 25%);
-  margin: 0 5px 0 0;
-  z-index: 99;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-start;
+  cursor: pointer;
 }
 
 .priority-menu {
@@ -247,6 +329,7 @@
 
 .priority-item {
   margin: 10px 0;
+  cursor: pointer;
 }
 .priority-item span {
   margin: 0 0 0 10px;
@@ -255,22 +338,25 @@
 .edit-todo-menu {
   position: absolute !important;
   right: 5vw !important;
-  margin: -2vh 0;
+  margin: -1vh -2vw;
 }
 .edit-todo-menu i {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   margin: 0 10px 0 0;
 }
 .edit-todo-menu span {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
 }
 
 .edit-todo-item {
   margin: 14px 0;
   cursor: pointer;
 }
-.edit-todo-item:hover {
-  color: blue;
+.edit-todo-item:nth-of-type(1):hover {
+  color: var(--va-primary);
+}
+.edit-todo-item:nth-of-type(2):hover {
+  color: #b31b1b;
 }
 
 @media screen and (min-width: 1025px) {
@@ -278,17 +364,72 @@
     right: 0;
   }
 }
+.fa-clock {
+  font-size: 1rem !important;
+  color: var(--va-primary);
+}
+
+.form-control {
+  margin: 8px 0;
+}
+
+.label {
+  display: block;
+  position: relative;
+}
+
+.input {
+  display: block !important;
+  margin: 8px 0 0 0;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid gray;
+  border-radius: 2px;
+}
+
+.endornment-container {
+  position: fixed;
+  top: 38%;
+  right: 9%;
+  z-index: 99;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+@media screen and (min-width: 768px) {
+  .endornment-container {
+    top: 37.5%;
+    right: 7%;
+  }
+}
 .container {
   position: relative;
   width: 100%;
   max-width: 100%;
-  height: 85vh;
+  min-height: 80vh;
   margin: auto;
   padding: 10px 0;
 }
 
+.hidden {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 600px;
+  }
+}
 @media screen and (min-width: 1025px) {
   .container {
     max-width: 700px;
+  }
+}
+@media screen and (min-width: 1281px) {
+  .container {
+    max-width: 900px;
   }
 }/*# sourceMappingURL=styles.css.map */

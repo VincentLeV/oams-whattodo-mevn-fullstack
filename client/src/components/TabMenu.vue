@@ -41,6 +41,11 @@ export default {
     methods: {
         onClick(title) {
             this.$emit("tab-click", title.name)
+            if (title.name === "Projects") {
+                this.$store.dispatch("setOriginality", "projects")
+            } else if (title.name === "Todos") {
+                this.$store.dispatch("setOriginality", "todos")
+            }
         }
     }
 }

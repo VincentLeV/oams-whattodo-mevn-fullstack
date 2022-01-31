@@ -10,9 +10,12 @@
             :aria-label="type"
         >
 
-        <div class="endornment-container" v-show="endornment">
+        <div 
+            class="endornment-container" 
+            v-show="endornment"
+        >
             <div 
-                :class="[priorityColor, priorityColor2, 'endornment']" 
+                :class="[priorityColor, priorityColor2]" 
                 @click="showMenu"
             >
                 <i class="fas fa-flag"></i>
@@ -21,12 +24,14 @@
             <PriorityMenu 
                 :isShowMenu="isShowMenu" 
                 @choose-priority="choosePriority" 
+                v-click-outside="onClickOutside"
             />
         </div>
     </div>
 </template>
 
 <script>
+import vClickOutside from "click-outside-vue3"
 import PriorityMenu from "./PriorityMenu/PriorityMenu.vue"
 
 export default {
@@ -104,7 +109,15 @@ export default {
             this.priorityColor = color
             this.isShowMenu = false
             this.$emit("get-priority", color)
+        },
+        onClickOutside(e) {
+            if (!e.target.className.includes("fas fa-flag")) {
+                this.isShowMenu = false
+            }
         }
-    }
+    },
+    directives: {
+        clickOutside: vClickOutside.directive
+    },
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <article class="todo-container">
-        <Todo 
+        <ProjectTodo 
             v-for="todo in todos" :key="todo.id" 
             :todo="todo" 
             @show-edit-todo-modal="this.$emit('show-edit-todo-modal')" 
@@ -11,12 +11,12 @@
 
 <script>
 import { VaDivider } from "vuestic-ui"
-import Todo from "./Todo.vue"
+import ProjectTodo from "./ProjectTodo.vue"
 
 export default {
-    name: "TodoContainer",
+    name: "ProjectTodoContainer",
     components: {
-        Todo,
+        ProjectTodo,
         VaDivider
     },
     props: {

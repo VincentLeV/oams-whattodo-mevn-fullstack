@@ -1,11 +1,9 @@
 <template>
-    <Modal v-show="showAddTodoModal">
+    <Modal v-show="showAddProjModal">
         <VaCard :bordered="false">
-            <VaCardTitle>Add Todo</VaCardTitle>
+            <VaCardTitle>Add Project</VaCardTitle>
             <VaCardContent>
-                <AddTodoForm 
-                    @close-add-todo-modal="this.$emit('close-add-todo-modal')" 
-                />
+                <AddProjectForm @close-add-project-modal="this.$emit('close-add-project-modal')" />
             </VaCardContent>
         </VaCard>
     </Modal>
@@ -14,19 +12,19 @@
 <script>
 import { VaCard, VaCardTitle, VaCardContent } from "vuestic-ui"
 import Modal from "../Modal.vue"
-import AddTodoForm from "./AddTodoForm.vue"
+import AddProjectForm from "./AddProjectForm.vue"
 
 export default {
-    name: "AddTodoModal",
+    name: "AddProjectModal",
     components: {
         VaCard,
         VaCardTitle,
         VaCardContent,
         Modal,
-        AddTodoForm
+        AddProjectForm
     },
     props: {
-        showAddTodoModal: {
+        showAddProjModal: {
             type: Boolean,
             default: false
         }

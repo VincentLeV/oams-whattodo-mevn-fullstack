@@ -8,7 +8,14 @@
                 v-show="showQuickTodos" 
                 @show-edit-todo-modal="openEditTodoModal"
             />
-            <Projects v-show="showProjects" />
+
+            <Projects 
+                v-show="showProjects" 
+                @show-add-todo-modal="openAddTodoModal"
+                @show-edit-todo-modal="openEditTodoModal"
+                @show-add-proj-modal="showAddProjModal"
+                @show-edit-proj-modal="openEditProjModal"
+            />
 
             <AddDial
                 :rotateDial="rotateDial"
@@ -24,9 +31,21 @@
                 @close-modal="closeModal"
             />
 
+            <AddProjectModal 
+                :showAddProjModal="showAddProjModal"
+                @close-add-project-modal="closeAddProjectModal" 
+                @close-modal="closeModal"
+            />
+
             <EditTodoModal 
                 :showEditTodoModal="showEditTodoModal"
                 @close-edit-todo-modal="closeEditTodoModal" 
+                @close-modal="closeModal"
+            />
+
+            <EditProjectModal 
+                :showEditProjModal="showEditProjModal"
+                @close-edit-proj-modal="closeEditProjModal" 
                 @close-modal="closeModal"
             />
         </div>
@@ -41,7 +60,9 @@ import QuickTodos from "./QuickTodos.vue"
 import Projects from "./Projects.vue"
 import AddDial from "../components/AddDial/AddDial.vue"
 import AddTodoModal from "../components/AddTodo/AddTodoModal.vue"
+import AddProjectModal from "../components/AddProject/AddProjectModal.vue"
 import EditTodoModal from "../components/EditTodo/EditTodoModal.vue"
+import EditProjectModal from "../components/EditProject/EditProjectModal.vue"
 
 export default {
     name: "Main",
@@ -52,17 +73,20 @@ export default {
         Projects,
         AddDial,
         AddTodoModal,
-        EditTodoModal
+        AddProjectModal,
+        EditTodoModal,
+        EditProjectModal
     },
     data() {
         return {
             showQuickTodos: true,
             showProjects: false,
             showAddTodoModal: false,
-            showProjectForm: false,
+            showAddProjModal: false,
             showEditTodoModal: false, 
+            showEditProjModal: false,
             rotateDial: false,
-            showContent: false,
+            showContent: false
         }
     },
     methods: {
@@ -79,29 +103,42 @@ export default {
             if (name === "todos") {
                 this.showAddTodoModal = true
             } else if (name === "projects") {
-                this.showProjectForm = true
+                this.showAddProjModal = true
             }
         },
         openEditTodoModal() {
             this.isEditMenuOpen = false
             this.showEditTodoModal = true
         },
+        openAddTodoModal() {
+            this.showAddTodoModal = true
+        },
+        openEditProjModal() {
+            this.showEditProjModal = true
+        },
         closeAddTodoModal() {
             this.showAddTodoModal = false
+        },
+        closeAddProjectModal() {
+            this.showAddProjModal = false
         },
         closeEditTodoModal() {
             this.showEditTodoModal = false
         },
+        closeEditProjModal() {
+            this.showEditProjModal = false
+        },
         closeModal() {
             this.showAddTodoModal = false
+            this.showAddProjModal = false
             this.showEditTodoModal = false
+            this.showEditProjModal = false
         },
         toggleDial() {
             this.rotateDial = !this.rotateDial
             this.showContent = !this.showContent
         },
         onClickOutside(e) {
-            // console.log(e.target.className)
             if (this.rotateDial === false) {
                 this.rotateDial = false
             } else {

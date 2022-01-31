@@ -1,6 +1,6 @@
 <template>
     <header>
-        <VaNavbar class="mb-4" color="primary" shape>
+        <VaNavbar class="mb-4 appbar" color="primary" shape>
             <template #left>
                 <VaNavbarItem>
                     <InlineSvg 
@@ -13,6 +13,18 @@
             <template #center>
                 <VaNavbarItem>
                     WhatToDo
+                </VaNavbarItem>
+            </template>
+            <template #right>
+                <VaNavbarItem>
+                    <a href="https://www.vincentle.me/" target="_blank">
+                        <InlineSvg 
+                            title="App Logo"
+                            :src="require('../assets/logo-white.svg')"
+                            class="my-logo"
+                        />
+                        <p class="hidden">Hidden</p>
+                    </a>
                 </VaNavbarItem>
             </template>
         </VaNavbar>

@@ -21,6 +21,8 @@ module.exports = {
         "import/prefer-default-export": "off",
         "comma-dangle": 0,
         "no-trailing-spaces": 0,
-        "linebreak-style": "off"
+        "linebreak-style": "off",
+        "no-underscore-dangle": 0,
+        "no-param-reassign": 0
     },
 }

@@ -13,15 +13,33 @@
         <div class="d-flex">
             <VaDateInput v-model="todo.deadlineDate" />
             <VaDivider vertical />
-            <VaTimeInput v-model="deadlineTime" ampm />
+            <VaInput 
+                v-model="todo.deadlineTime"
+                :rules="[
+                    (v) => v.match(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/g) 
+                    || `Time format is wrong`
+                ]"
+            >
+                <template #appendInner>
+                    <VaIcon
+                        class="far fa-clock"
+                    />
+                </template>
+            </VaInput>
         </div>
 
-        <Button name="Edit Todo" />
+        <Button class="edit-todo-btn" name="Edit Todo" />
     </form>
 </template>
 
 <script>
-import { VaDateInput, VaDivider, VaTimeInput } from "vuestic-ui"
+import { 
+    VaDateInput, 
+    VaDivider, 
+    VaInput,
+    VaIcon
+} from "vuestic-ui"
+import { mapGetters } from "vuex"
 import moment from "moment"
 import Input from "../Input.vue"
 import Button from "../Button.vue"
@@ -31,49 +49,73 @@ export default {
     components: {
         VaDateInput,
         VaDivider,
-        VaTimeInput,
+        VaInput,
+        VaIcon,
         Input,
         Button
     },
-    data() {
+    created() {
         return {
-            value: "",
-            label: "Description",
-            name: "description",
-            type: "text",
-            deadlineTime: new Date(),
-            deadlineDate: new Date(),
-            priority: this.$store.getters?.selectedTodo?.priority
+            todo: {
+                value: "",
+                label: "Description",
+                name: "edit-todo-desc",
+                type: "text",
+                deadlineTime: "",
+                deadlineDate: new Date(),
+                priority: this.selectedTodo?.priority
+            }
         }
     },
     computed: {
+        ...mapGetters(["selectedProject", "selectedTodo", "originality"]),
         todo() {
             return {
-                id: this.$store.getters?.selectedTodo?.id,
-                value: this.$store.getters?.selectedTodo?.description,
+                ...this.todo,
                 label: "Description",
-                name: "description",
-                type: "text",
-                deadlineTime: new Date(moment(this.$store.getters?.selectedTodo?.deadline).format("HH:mm")),
-                deadlineDate: new Date(moment(this.$store.getters?.selectedTodo?.deadline).format("YYYY-MM-DD")),
-                priority: this.$store.getters?.selectedTodo?.priority,
-                isCompleted: this.$store.getters?.selectedTodo?.isCompleted
+                name: "edit-todo-desc",
+                value: this.selectedTodo?.description,
+                deadlineTime: moment(this.selectedTodo?.deadline).format("HH:mm"),
+                deadlineDate: new Date(moment(this.selectedTodo?.deadline).format("YYYY-MM-DD")),
+                isCompleted: this.selectedTodo?.isCompleted,
+                priority: this.selectedTodo?.priority
             }
         }
     },
     methods: {
         async handleEditTodo() {
             try {
-                const date = `${moment(this.todo.deadlineDate).format("MM-DD-YYYY")} ${moment(this.deadlineTime).format("HH:mm")}`
+                const date = `${moment(this.todo.deadlineDate).format("MM-DD-YYYY")} ${this.todo.deadlineTime}`
+                if (!this.todo.deadlineTime.match(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/g)) {
+                    this.$vaToast.init({ 
+                        message: "Can't create new todo: wrong time format", 
+                        position: "bottom-left" 
+                    })
+                    return
+                }
                 const newTodo = {
-                    id: this.todo.id,
+                    ...this.selectedTodo,
                     description: this.todo.value,
                     deadline: new Date(date),
                     priority: this.todo.priority,
-                    isCompleted: this.todo.isCompleted
+                    isCompleted: this.todo.isCompleted,
                 }
 
-                await this.$store.dispatch("editTodo", newTodo)
+                if (this.originality === "projects") {
+                    const pTodos = [...this.selectedProject.todos]
+                    const index = pTodos.findIndex((x) => x._id === this.selectedTodo._id)
+                    pTodos.splice(index, 1, newTodo)
+                    const newProject = {
+                        ...this.selectedProject,
+                        todos: pTodos
+                    }
+                    this.$store.dispatch("updateProject", {
+                        project: newProject,
+                        todo: null
+                    })
+                } else {
+                    await this.$store.dispatch("editTodo", newTodo)
+                }
                 this.$emit("close-edit-todo-modal")
                 this.$vaToast.init({ message: "Successfully edited todo", position: "bottom-left" })
             } catch (err) {

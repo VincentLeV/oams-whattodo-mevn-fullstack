@@ -1,3 +1,18 @@
+@import "../abstracts"
+
 .app-logo
-    width: 4.5rem
-    height: 4.5rem
+    width: 3.5rem
+    height: 3.5rem
+
+.my-logo
+    width: 2.2rem
+    height: 2.2rem
+    display: none
+
+@include responsive(md)
+    .appbar
+        padding: 0 4rem
+
+@include responsive(md)
+    .my-logo
+        display: block

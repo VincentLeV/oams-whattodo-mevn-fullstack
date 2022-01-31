@@ -2,21 +2,28 @@
 
 .todo-container
     padding: 0 2vw
+
+.form-control,
+.todo-description,
+.todo-info,
+.todo-extra
+    cursor: pointer
     
 .todo
     margin: 5px 0
     &.selected
         position: relative
 
-.todo-info
+.todo-details
     display: flex !important
     flex-direction: row !important
+    font-size: 0.8rem
 
 .todo-description
-    font-size: 1.1rem
+    font-size: 1rem
 
 .todo-extra
-    font-size: 0.85rem
+    font-size: 0.8rem
     color: $priority-med !important
 
 .form-control
@@ -38,6 +45,9 @@
     font-size: 1.4em
     color: gray
     cursor: pointer
+
+.p-normal
+    color: $blue-gray
 
 .p-high,
 .p-high-2

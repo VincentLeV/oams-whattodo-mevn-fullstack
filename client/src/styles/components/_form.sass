@@ -1,0 +1,34 @@
+@import "../abstracts"
+
+.fa-clock
+    font-size: 1rem !important
+    color: var(--va-primary)
+
+        
+.form-control
+    margin: 8px 0
+
+.label
+    display: block
+    position: relative
+
+.input
+    display: block !important
+    margin: 8px 0 0 0 
+    padding: 10px
+    width: 100%
+    border: 1px solid gray
+    border-radius: 2px
+    
+.endornment-container
+    position: fixed
+    top: 38%
+    right: 9%
+    z-index: 99
+    cursor: pointer
+    @include flexBox(column, flex-end, flex-start)
+
+@include responsive(md)
+    .endornment-container
+        top: 37.5%
+        right: 7%

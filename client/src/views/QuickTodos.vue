@@ -22,22 +22,17 @@ export default {
         VaList,
         TodoContainer,
     },
-    created() {
-        this.$store.dispatch("getTodos")
-    }, 
     computed: mapState(["todos"]),
     updated() {
         this.unsubscribe = this.$store.subscribe((mutation) => {
-            if (mutation.type === "EDIT_TODO" || mutation.type === "MARK_AS_COMPLETE") {
+            if (mutation.type === "EDIT_PROJECT" || mutation.type === "MARK_TODO_COMPLETE") {
                 this.$store.dispatch("getTodos")
             }
         })
     },
-    methods: {
-        close() {
-            this.$emit("close")
-        },
-    },
+    created() {
+        this.$store.dispatch("getTodos")
+    }
 }
 </script>
 

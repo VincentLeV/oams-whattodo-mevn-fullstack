@@ -22,6 +22,7 @@
 
 <script>
 import vClickOutside from "click-outside-vue3"
+import { mapGetters } from "vuex"
 import { VaCard, VaCardTitle, VaCardContent } from "vuestic-ui"
 import EditTodoItem from "./EditTodoItem.vue"
 
@@ -39,10 +40,21 @@ export default {
         },
         todo: Object
     },
+    computed: {
+        ...mapGetters(["originality", "selectedProject", "selectedTodo", "allProjects"])
+    },
     methods: {
         deleteTodo() {
             if (window.confirm("Are you sure?")) {
-                this.$store.dispatch("deleteTodo", this.$store.getters.selectedTodo.id)
+                if (this.originality === "projects") {
+                    const payload = {
+                        projectId: this.selectedProject.id,
+                        todoId: this.selectedTodo._id,
+                    }
+                    this.$store.dispatch("deleteProjectTodo", payload)
+                } else {
+                    this.$store.dispatch("deleteTodo", this.selectedTodo.id)
+                }
             }
             this.$emit("click-outside-menu")
         },

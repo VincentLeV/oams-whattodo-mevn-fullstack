@@ -1,6 +1,9 @@
 @mixin responsive($screen)
+    @if $screen == sm
+        @media screen and (max-width: 767px)
+            @content
     @if $screen == md
-        @media screen and (min-width: 420px)
+        @media screen and (min-width: 768px)
             @content
     @if $screen == lg
         @media screen and (min-width: 1025px)

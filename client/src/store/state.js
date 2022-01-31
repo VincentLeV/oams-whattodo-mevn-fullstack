@@ -1,6 +1,10 @@
 const state = {
     todos: [],
+    projects: [],
+    sProject: null,
     selectedTodo: null,
+    selectedProject: null,
+    originality: "todos",
     priorities: [
         {
             name: "High",

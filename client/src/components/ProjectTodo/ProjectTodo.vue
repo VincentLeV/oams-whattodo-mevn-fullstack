@@ -20,11 +20,11 @@
                     </div>
                 </form>
 
-                <VaListItemSection 
+                <VaListItemSection
                     v-if="showDetails"
                     class="todo-details ml-5 mt-1"
                 >
-                    <div :class="[color, 'mr-2 p-normal']">
+                    <div :class="[color, 'mr-2']">
                         <i class="fas fa-flag"></i>
                     </div>
                     <p class="todo-extra">
@@ -61,7 +61,7 @@ import { mapGetters } from "vuex"
 import EditTodoMenu from "../EditTodo/EditTodoMenu.vue"
 
 export default {
-    name: "Todo",
+    name: "ProjectTodo",
     props: {
         todo: Object
     },
@@ -71,7 +71,7 @@ export default {
         EditTodoMenu
     },
     computed: {
-        ...mapGetters(["selectedTodo"])
+        ...mapGetters(["selectedProject", "selectedTodo"])
     },
     data() {
         return {    
@@ -89,16 +89,20 @@ export default {
         this.getPriorityColor(this.todo.priority)
     },
     updated() {
-        this.showDetails = !this.todo.isCompleted
+        this.checkboxValue = this.todo.isCompleted
         this.formattedDeadline = moment(this.todo.deadline).format("DD-MM-YYYY hh:mm A")
+        this.showDetails = !this.todo.isCompleted
         this.getPriorityColor(this.todo.priority)
     },
     methods: {
-        completeTodo() {
+        async completeTodo() {
             this.checkboxValue = !this.checkboxValue
-            this.$store.dispatch("markTodoComplete", {
-                ...this.todo,
-                isCompleted: this.checkboxValue
+            const newTodo = { ...this.todo, isCompleted: this.checkboxValue }
+            const index = this.selectedProject.todos.findIndex((x) => x._id === this.todo._id)
+            this.selectedProject.todos.splice(index, 1, newTodo)
+            this.$store.dispatch("updateProject", {
+                project: this.selectedProject,
+                todo: null
             })
         },
         showEditMenu() {
@@ -124,6 +128,6 @@ export default {
             }
         }
     },
-    emits: ["show-edit-todo-modal"],
+    emits: ["show-edit-todo-modal"]
 }
 </script>

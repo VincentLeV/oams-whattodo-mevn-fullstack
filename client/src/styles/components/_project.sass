@@ -1,0 +1,53 @@
+@import "../abstracts"
+
+.va-collapse__header__text
+    font-size: 1.05rem
+    font-weight: bold
+
+.project-accordion
+    width: 100%
+    padding: 1rem 0 5rem 0
+
+.project-container
+    width: 90%
+    margin: auto
+
+.project
+    padding: 1rem 0
+
+.project-toolbar
+    padding: 0 1rem 1rem 1rem
+    @include flexBox(row, center, space-between)
+
+    div
+        cursor: pointer
+
+    i
+        font-size: 1.1rem
+        margin: 0 5px 0 0
+
+    span
+        font-size: 0.9rem
+
+    i, span
+        color: $blue-gray
+    
+    .toolbar-delete 
+        > *
+            color: $red
+        i
+            font-size: 1rem
+
+    div:nth-of-type(2)
+        @include flexBox(row, center, space-between)
+
+        div
+            &:nth-of-type(1)
+                margin: 0 20px 0 0
+
+@include responsive(lg)
+    .project-container
+        width: 80%
+
+    .project-accordion
+        margin: 2rem 1rem

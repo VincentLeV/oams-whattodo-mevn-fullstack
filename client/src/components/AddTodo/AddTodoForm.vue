@@ -12,10 +12,22 @@
         <div class="d-flex">
             <VaDateInput v-model="deadlineDate" />
             <VaDivider vertical />
-            <VaTimeInput v-model="deadlineTime" ampm />
+            <VaInput 
+                class="dtime-input"
+                v-model="deadlineTime"
+                :rules="[
+                    (v) => v.match(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/g)
+                    || `Time format is wrong`
+                ]"
+            >
+                <template #appendInner>
+                    <VaIcon class="far fa-clock" />
+                </template>
+            </VaInput>
         </div>
 
         <Button
+            class="add-todo-btn"
             name="Add Todo" 
         />
     </form>
@@ -23,10 +35,12 @@
 
 <script>
 import { 
-    VaTimeInput, 
     VaDivider, 
-    VaDateInput
+    VaDateInput,
+    VaInput,
+    VaIcon
 } from "vuestic-ui"
+import { mapGetters } from "vuex"
 import moment from "moment"  
 import Input from "../Input.vue"
 import Button from "../Button.vue"
@@ -36,27 +50,39 @@ export default {
     components: {
         Input,
         Button,
-        VaTimeInput,
         VaDivider,
-        VaDateInput
+        VaDateInput,
+        VaInput,
+        VaIcon
+    },
+    computed: {
+        ...mapGetters(["originality", "selectedProject"])
     },
     data() {
         return {
             input: {
                 value: "",
                 label: "Description",
-                name: "description",
+                name: "add-todo-desc",
                 type: "text",
             },
-            deadlineTime: new Date(),
+            deadlineTime: "",
             deadlineDate: new Date(),
-            priority: 0
+            priority: 0,
+            validate: false
         }
     },
     methods: {
         async handleAddTodo() {
-            const date = `${moment(this.deadlineDate).format("MM-DD-YYYY")} ${moment(this.deadlineTime).format("HH:mm")}`
             try {
+                const date = `${moment(this.deadlineDate).format("MM-DD-YYYY")} ${this.deadlineTime}`
+                if (!this.deadlineTime.match(/^( [0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/g)) {
+                    this.$vaToast.init({ 
+                        message: "Can't create new todo: wrong time format", 
+                        position: "bottom-left" 
+                    })
+                    return
+                }
                 const newTodo = {
                     description: this.input.value,
                     deadline: new Date(date),
@@ -64,12 +90,21 @@ export default {
                     isCompleted: false
                 }
 
-                await this.$store.dispatch("createTodo", newTodo)
+                if (this.originality === "projects") {
+                    await this.$store.dispatch("updateProject", {
+                        project: this.selectedProject,
+                        todo: newTodo
+                    })
+                } else {
+                    await this.$store.dispatch("createTodo", newTodo)
+                }
+
                 this.input.value = ""
+                this.deadlineTime = ""
                 this.$emit("close-add-todo-modal")
                 this.$vaToast.init({ message: "Successfully added new todo", position: "bottom-left" })
             } catch (err) {
-                this.$vaToast.init({ message: err.message, position: "bottom-left" })
+                this.$vaToast.init({ message: err, position: "bottom-left" })
             }
         },
         getPriority(color) {
