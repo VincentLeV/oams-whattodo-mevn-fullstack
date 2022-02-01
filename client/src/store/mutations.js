@@ -39,7 +39,7 @@ const mutations = {
         state.projects = payload
     },
     CREATE_NEW_PROJECT(state, payload) {
-        state.projects.unshift(payload)
+        state.projects.push(payload)
     },
     UPDATE_PROJECT(state, payload) {
         const found = state.projects.find((x) => x._id === payload._id) 

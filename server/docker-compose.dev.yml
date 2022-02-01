@@ -2,13 +2,13 @@ version: '3.8'
 
 services:
   what-todo-backend:
-    image: whattodo-backend-dev
+    image: whattodo-mevn-backend-dev
     build:
       context: .
       dockerfile: dev.Dockerfile
     volumes:
       - ./:/usr/src/app
-    container_name: whattodo-backend-standalone
+    container_name: wtd-mevn-backend-standalone
     ports:
       - 5000:5000
     environment:
