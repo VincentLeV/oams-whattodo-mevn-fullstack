@@ -54,13 +54,13 @@ For simplicity's sake, there is no user feature in the app.
         cd client
         yarn run production
 
-<p align="center">Checkout the app at <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a></p>
+<p align="center">Check the app out at <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a></p>
 
 ### Using Docker
 
         ./deploy.ps1
 
-<p align="center">Checkout the app at <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a></p>
+<p align="center">Check the app out at <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a></p>
 
 ### E2E Testing
 
