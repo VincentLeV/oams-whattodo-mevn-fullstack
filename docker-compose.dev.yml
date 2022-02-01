@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  server:
+    image: whattodo-mevn-backend-dev
+    build:
+      context: ./server
+      dockerfile: ./dev.Dockerfile
+    volumes:
+      - ./server:/usr/src/app
+    ports:
+      - 5000:3000
+    container_name: wtdmevn-backend-dev
+    environment:
+      MONGO_URL: 'mongodb://the_username:the_password@mongo:27017/the_database'
+
+  client:
+    image: whattodo-mevn-frontend-dev
+    command: yarn run serve --port 3000
+    build:
+      context: ./client
+      dockerfile: ./dev.Dockerfile
+    volumes:
+      - ./client:/usr/src/app
+    ports:
+      - 3000:3000
+    container_name: wtdmevn-frontend-dev
+    environment:
+      REACT_APP_BACKEND_URL: "/api/"
+
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./dev.nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: wtdmevn-reverse-proxy-dev
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: the_database
+    container_name: wtdmevn-mongo-dev
+    volumes: 
+      - ./whattodo-backend/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - ./whattodo-backend/mongo_data:/data/db
