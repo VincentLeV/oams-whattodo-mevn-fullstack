@@ -59,7 +59,7 @@ export default {
                 type: "text",
                 deadlineTime: "",
                 deadlineDate: new Date(),
-                priority: this.selectedTodo?.priority
+                priority: 0
             }
         }
     },
