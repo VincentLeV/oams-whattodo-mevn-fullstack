@@ -32,10 +32,10 @@ For simplicity's sake, there is no user feature in the app.
 
 ## Demo
 
-<!-- <a href="https://oams-whattodo-mevn.netlify.app" target="_blank">
+<a href="https://oams-whattodo-mevn.netlify.app" target="_blank">
     <p align="center">https://oams-whattodo-mevn.netlify.app</p>
 </a>
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/49280437/150673038-94e13007-6653-438b-a7c5-85dae2c18b49.gif" alt="4" />
-</p> -->
+    <img src="https://user-images.githubusercontent.com/49280437/151953397-9ab3ae8a-c084-4a86-a3bb-cbb40d288c41.gif" alt="gif" />
+</p>
