@@ -42,9 +42,6 @@ For simplicity's sake, there is no user feature in the app.
 ## Run The Project Locally?
 
 :loudspeaker: For all of the step below: make sure that you're in the project's directory :loudspeaker:
-
-<br />
-
 ### Using Terminal and VSCode
 
 1. Run the Backend
@@ -57,23 +54,17 @@ For simplicity's sake, there is no user feature in the app.
         cd client
         yarn run production
 
-<p align="center">Checkout the app at http://localhost:8080/</p>
-
-<br />
+<p align="center">Checkout the app at <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a></p>
 
 ### Using Docker
 
         ./deploy.ps1
 
-<p align="center">Checkout the app at http://localhost:8080/</p>
-
-<br />
+<p align="center">Checkout the app at <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a></p>
 
 ### E2E Testing
 
     yarn run cypress
-
-<br />
 
 ## UI Examples
 
