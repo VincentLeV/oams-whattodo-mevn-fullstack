@@ -19,22 +19,21 @@ For simplicity's sake, there is no user feature in the app.
 6. Docker
 
 ## Images
-<!-- <p align="center">
-    <img src="https://user-images.githubusercontent.com/49280437/150652075-351d8d84-bc84-4f1f-b524-4ec997a421e2.jpg" alt="1" width="500px" />
+
+<p float="left">
+<img src="https://user-images.githubusercontent.com/49280437/151948329-7198838c-889e-4066-a19e-82b9c1b1026a.jpg" alt="1" width="500px" />
+<img src="https://user-images.githubusercontent.com/49280437/151948343-9b78c4c3-18d7-448f-8c82-a24b33605129.jpg" alt="3" width="500px" />
 </p>
 
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/49280437/150652080-3a67049d-7a52-4fac-b01e-f70f31b67313.jpg" alt="2" width="500px" />
+<p float="right">
+<img src="https://user-images.githubusercontent.com/49280437/151948335-0956232f-222f-47c0-a519-379a07e243d4.jpg" alt="2" width="500px" />
+<img src="https://user-images.githubusercontent.com/49280437/151948347-16704246-1763-4436-98d5-4aea85309f4f.jpg" alt="4" width="500px" />
 </p>
-
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/49280437/150652083-4f2d7445-e61e-4a10-923c-8c3c90fced05.jpg" alt="3" width="500px" />
-</p> -->
 
 ## Demo
 
-<!-- <a href="https://oams-whattodo-mern.netlify.app" target="_blank">
-    <p align="center">https://oams-whattodo-mern.netlify.app</p>
+<!-- <a href="https://oams-whattodo-mevn.netlify.app" target="_blank">
+    <p align="center">https://oams-whattodo-mevn.netlify.app</p>
 </a>
 
 <p align="center">

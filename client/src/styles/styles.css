@@ -45,6 +45,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 102;
 }
 
 .modal-backdrop {
@@ -61,7 +62,6 @@
           transform: translate(-50%, -50%);
   width: 90vw;
   margin: 0 auto;
-  z-index: 5000;
 }
 
 @media screen and (min-width: 768px) {
@@ -257,6 +257,7 @@
   position: fixed;
   bottom: 3vh;
   right: 8vw;
+  z-index: 100;
 }
 
 .add-dial {

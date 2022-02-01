@@ -25,7 +25,7 @@ export default {
     computed: mapState(["todos"]),
     updated() {
         this.unsubscribe = this.$store.subscribe((mutation) => {
-            if (mutation.type === "EDIT_PROJECT" || mutation.type === "MARK_TODO_COMPLETE") {
+            if (mutation.type === "EDIT_TODO" || mutation.type === "MARK_TODO_COMPLETE") {
                 this.$store.dispatch("getTodos")
             }
         })
