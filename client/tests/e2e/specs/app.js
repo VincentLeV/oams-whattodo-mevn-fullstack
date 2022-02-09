@@ -84,7 +84,9 @@ describe("WhatToDo App", function() {
 
         it("can create project", function() {
             cy.get('.add-dial').click()
+            cy.wait(200)
             cy.get(".add-dial-content").children().eq(0).click()
+            cy.wait(300)
             cy.get("input[name*='project-name']").type("New Project", { force: true })
             cy.get(".add-project-btn").click()
             cy.get(".va-collapse").should("have.length", 2)
@@ -110,6 +112,7 @@ describe("WhatToDo App", function() {
             cy.get(".priority-item").children().eq(2).click()
             cy.wait(200)
             cy.get(".add-todo-btn").click({ force: true })
+            cy.wait(300)
             cy.get(".todo-description").should("contain", "First Task")
             cy.get(".todo-extra").should("contain", `${moment(new Date()).format("DD-MM-YYYY hh:mm")}`)
             cy.get(".todo-details div").should('have.class', 'p-med')
