@@ -45,8 +45,7 @@ jobs:
         working-directory: client
         run: |
           yarn install
-          yarn build
-          yarn production &
+          yarn serve &
           yarn cypress run
         env:
           REACT_APP_API_BASE_URL: http://localhost:5000
