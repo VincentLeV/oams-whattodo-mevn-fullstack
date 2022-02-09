@@ -46,8 +46,8 @@ jobs:
         run: |
           yarn install
           yarn build
-          yarn serve &
-          yarn test:e2e
+          yarn production &
+          yarn cypress run
         env:
           REACT_APP_API_BASE_URL: http://localhost:5000
 
