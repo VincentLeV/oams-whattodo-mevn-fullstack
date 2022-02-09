@@ -48,7 +48,7 @@ jobs:
           yarn serve &
           yarn cypress run
         env:
-          REACT_APP_API_BASE_URL: http://localhost:5000
+          VUE_APP_API_BASE_URL: http://localhost:5000
 
   Deployment:
     needs: Lint_Build_Test
