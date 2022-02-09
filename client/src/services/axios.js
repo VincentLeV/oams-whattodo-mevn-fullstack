@@ -1,7 +1,6 @@
 import axios from "axios"
 
-const baseUrl = "https://oams-whattodo-mevn-api.herokuapp.com"
-// const baseUrl = "http://localhost:5000"
+const baseUrl = process.env.VUE_APP_API_BASE_URL || "https://oams-whattodo-mevn-api.herokuapp.com"
 
 const getTodos = async () => {
     const req = await axios.get(`${baseUrl}/api/todos`)
