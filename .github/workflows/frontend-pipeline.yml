@@ -70,7 +70,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: 'client/build'
+          publish-dir: 'client/dist'
           production-branch: main
           deploy-message: "Deploy from GitHub Actions"
           enable-commit-comment: true
