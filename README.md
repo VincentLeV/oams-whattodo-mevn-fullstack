@@ -13,7 +13,7 @@
 <br/>
 [Tech Stack](#tech-stack)
 <br/>
-[Run The Project Locally?](#run-the-project-locally)
+[Run The Project Locally](#run-the-project-locally)
 <br/>
 [UI Examples](#ui-examples)
 <br/>
@@ -39,7 +39,7 @@ For simplicity's sake, there is no user feature in the app.
 5. MongoDB
 6. Docker
 
-## Run The Project Locally?
+## Run The Project Locally
 
 :loudspeaker: For all of the step below: make sure that you're in the project's directory :loudspeaker:
 ### Using Terminal and VSCode
