@@ -14,7 +14,7 @@ projectRouter.get( "/api/projects", async (_, res) => {
 projectRouter.get( "/api/projects/:id", async (req, res, next) => {
     try {
         const project = await Project.findById( req.params.id )
-        project ? res.json( project ) : res.status(404).end()
+        return project ? res.json( project ) : res.status(404).end()
     } catch (err) {
         next(err)
     }
