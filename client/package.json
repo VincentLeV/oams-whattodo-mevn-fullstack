@@ -1,5 +1,6 @@
 {
-  "name": "oams-whattodo-mevn",
+  "name": "oams-whattodo-mevn-frontend",
+  "author": "Vincent Le",
   "version": "0.1.0",
   "private": true,
   "scripts": {
